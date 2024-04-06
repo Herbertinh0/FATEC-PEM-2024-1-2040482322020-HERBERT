@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+float calcular_nota_final(float notas[], int N) {
+    float soma = 0;
+    float min = notas[0], max = notas[0];
+
+    for (int i = 0; i < N; i++) {
+        soma += notas[i];
+        if (notas[i] < min) {
+            min = notas[i];
+        }
+        if (notas[i] > max) {
+            max = notas[i];
+        }
+    }
+    
+    soma = soma - min - max;
+
+    return soma;
+}
+
+int main() {
+    
+    float notas_raciocinio[] = {8.0, 4.0, 2.0, 3.0};
+    float notas_gerenciamento[] = {4.0, 3.0, 5.0, 9.0, 7.0};
+    float notas_ingles[] = {7.0, 10.0, 9.0, 8.0};
+    float notas_agilidade[] = {6.0, 5.0, 7.0, 9.0, 8.0, 3.0};
+    float notas_javascript[] = {7.0, 4.0, 2.0, 9.0, 1.0};
+
+    
+    float nota_raciocinio = calcular_nota_final(notas_raciocinio, 4);
+    float nota_gerenciamento = calcular_nota_final(notas_gerenciamento, 5);
+    float nota_ingles = calcular_nota_final(notas_ingles, 4);
+    float nota_agilidade = calcular_nota_final(notas_agilidade, 6);
+    float nota_javascript = calcular_nota_final(notas_javascript, 5);
+
+    float nota_final = nota_raciocinio + nota_gerenciamento + nota_ingles + nota_agilidade + nota_javascript;
+
+    printf("Nota Raciocínio Lógico=%.0f\n", nota_raciocinio);
+    printf("Nota Conceitos de Gerenciamento de Projetos=%.0f\n", nota_gerenciamento);
+    printf("Nota Língua Inglesa=%.0f\n", nota_ingles);
+    printf("Nota Conceitos de Metodologia Ágil=%.0f\n", nota_agilidade);
+    printf("Nota Linguagem JavaScript=%.0f\n", nota_javascript);
+    printf("Nota final do candidato = %.0f\n", nota_final);
+
+    return 0;
+}
