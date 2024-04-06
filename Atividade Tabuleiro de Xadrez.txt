@@ -1,0 +1,74 @@
+#include <stdio.h>
+ 
+#define TAMANHO_TABULEIRO 8
+ 
+typedef enum {B_PAWN, B_KNIGHT, B_BISHOP, B_ROOK, B_QUEEN, B_KING, P_PAWN, P_KNIGHT, P_BISHOP, P_ROOK, P_QUEEN, P_KING, EMPTY} Piece;
+ 
+void printBoard(Piece board[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO]) {
+    for (int i = 0; i < TAMANHO_TABULEIRO; i++) {
+        for (int j = 0; j < TAMANHO_TABULEIRO; j++) {
+            switch (board[i][j]) {
+                case B_PAWN:
+                    printf("BP%d ", i + 1);
+                    break;
+                case B_KNIGHT:
+                    printf("BC%d ", i + 1);
+                    break;
+                case B_BISHOP:
+                    printf("BB%d ", i + 1);
+                    break;
+                case B_ROOK:
+                    printf("BT%d ", i + 1);
+                    break;
+                case B_QUEEN:
+                    printf("BD%d ", i + 1);
+                    break;
+                case B_KING:
+                    printf("BR%d ", i + 1);
+                    break;
+                case P_PAWN:
+                    printf("PP%d ", i + 1);
+                    break;
+                case P_KNIGHT:
+                    printf("PC%d ", i + 1);
+                    break;
+                case P_BISHOP:
+                    printf("PB%d ", i + 1);
+                    break;
+                case P_ROOK:
+                    printf("PT%d ", i + 1);
+                    break;
+                case P_QUEEN:
+                    printf("PD%d ", i + 1);
+                    break;
+                case P_KING:
+                    printf("PR%d ", i + 1);
+                    break;
+                case EMPTY:
+                    printf("X 0 ");
+                    break;
+            }
+        }
+        printf("\n");
+    }
+}
+ 
+int main() {
+    Piece board[TAMANHO_TABULEIRO][TAMANHO_TABULEIRO] = {
+        {B_ROOK, B_KNIGHT, B_BISHOP, B_QUEEN, B_KING, B_BISHOP, B_KNIGHT, B_ROOK},
+        {B_PAWN, B_PAWN, B_PAWN, B_PAWN, B_PAWN, B_PAWN, B_PAWN, B_PAWN},
+        {EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY},
+        {EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY},
+        {EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY},
+        {EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY},
+        {P_PAWN, P_PAWN, P_PAWN, P_PAWN, P_PAWN, P_PAWN, P_PAWN, P_PAWN},
+        {P_ROOK, P_KNIGHT, P_BISHOP, P_QUEEN, P_KING, P_BISHOP, P_KNIGHT, P_ROOK}
+    };
+ 
+    printf("  a   b   c   d   e   f   g   h\n");
+    printf("---------------------------------\n");
+    printBoard(board);
+    printf("\n");
+ 
+    return 0;
+}
