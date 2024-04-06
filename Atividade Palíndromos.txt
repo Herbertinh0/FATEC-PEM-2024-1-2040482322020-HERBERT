@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+// Função para verificar se uma palavra é um palíndromo
+int is_palindrome(char *word) {
+    int length = strlen(word);
+    int i, j;
+    
+    for (i = 0, j = length - 1; i < j; i++, j--) {
+        if (tolower(word[i]) != tolower(word[j])) {
+            return 0; // Não é um palíndromo
+        }
+    }
+    
+    return 1; // É um palíndromo
+}
+
+// Função para verificar se uma palavra é um artigo ou preposição
+int is_article_or_preposition(char *word) {
+    // Lista de artigos e preposições em português
+    char *articles_prepositions[] = {"a", "o", "os", "as", "um", "uns", "uma", "umas", "de", "da", "do", "das", "dos", "em", "no", "na", "nos", "nas", "por", "para", "com", "sem", "sob", "sobre", "ante", "após", "até", "depois", "durante", "entre", "perante", "porque"};
+    
+    int num_articles_prepositions = sizeof(articles_prepositions) / sizeof(articles_prepositions[0]);
+    
+    // Verifica se a palavra está na lista de artigos/preposições
+    for (int i = 0; i < num_articles_prepositions; i++) {
+        if (strcmp(word, articles_prepositions[i]) == 0) {
+            return 1; // É um artigo ou preposição
+        }
+    }
+    
+    return 0; // Não é um artigo ou preposição
+}
+
+int main() {
+    char sentence[1000];
+    printf("Digite uma frase: ");
+    fgets(sentence, sizeof(sentence), stdin);
+    
+    // Tokeniza a frase em palavras
+    char *token = strtok(sentence, " \n");
+
+    printf("Palavras palíndromas encontradas na frase:\n");
+    while (token != NULL) {
+        // Verifica se o token não é um artigo ou preposição
+        if (!is_article_or_preposition(token)) {
+            // Remove pontuação no final da palavra, se houver
+            int len = strlen(token);
+            if (ispunct(token[len - 1]))
+                token[len - 1] = '\0';
+
+            // Verifica se o token é um palíndromo
+            if (is_palindrome(token)) {
+                printf("%s\n", token);
+            }
+        }
+        
+        token = strtok(NULL, " \n");
+    }
+    
+    return 0;
+}
