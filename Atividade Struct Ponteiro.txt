@@ -1,0 +1,129 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_PRODUTOS 100
+
+typedef struct {
+    int id;
+    char nome[50];
+    char descricao[100];
+    float preco;
+    int quantidade;
+} Produto;
+
+void inserirProduto(Produto *produtos, int *num_produtos);
+void listarProdutos(Produto *produtos, int num_produtos);
+void ordenarProdutos(Produto *produtos, int num_produtos);
+void comprarProduto(Produto *produtos, int num_produtos);
+
+int main() {
+    Produto produtos[MAX_PRODUTOS];
+    int num_produtos = 0;
+    int opcao;
+
+    while (1) {
+        printf("\nMenu:\n");
+        printf("1. Inserir Produto\n");
+        printf("2. Listar Produtos\n");
+        printf("3. Comprar Produto\n");
+        printf("4. Sair\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1:
+                inserirProduto(produtos, &num_produtos);
+                break;
+            case 2:
+                listarProdutos(produtos, num_produtos);
+                break;
+            case 3:
+                comprarProduto(produtos, num_produtos);
+                break;
+            case 4:
+                exit(0);
+            default:
+                printf("Opcao invalida!\n");
+        }
+    }
+
+    return 0;
+}
+
+void inserirProduto(Produto *produtos, int *num_produtos) {
+    if (*num_produtos >= MAX_PRODUTOS) {
+        printf("Limite de produtos atingido!\n");
+        return;
+    }
+
+    Produto novo_produto;
+    novo_produto.id = *num_produtos + 1;
+
+    printf("Nome do produto: ");
+    scanf(" %[^\n]", novo_produto.nome);
+    printf("Descricao do produto: ");
+    scanf(" %[^\n]", novo_produto.descricao);
+    printf("Preco do produto: ");
+    scanf("%f", &novo_produto.preco);
+    printf("Quantidade em estoque: ");
+    scanf("%d", &novo_produto.quantidade);
+
+    produtos[*num_produtos] = novo_produto;
+    (*num_produtos)++;
+    ordenarProdutos(produtos, *num_produtos);
+}
+
+void listarProdutos(Produto *produtos, int num_produtos) {
+    ordenarProdutos(produtos, num_produtos);
+    printf("\nLista de Produtos:\n");
+    for (int i = 0; i < num_produtos; i++) {
+        printf("ID: %d\n", produtos[i].id);
+        printf("Nome: %s\n", produtos[i].nome);
+        printf("Descricao: %s\n", produtos[i].descricao);
+        printf("Preco: %.2f\n", produtos[i].preco);
+        printf("Quantidade: %d\n\n", produtos[i].quantidade);
+    }
+}
+
+void ordenarProdutos(Produto *produtos, int num_produtos) {
+    for (int i = 0; i < num_produtos - 1; i++) {
+        for (int j = 0; j < num_produtos - i - 1; j++) {
+            if (strcmp(produtos[j].nome, produtos[j + 1].nome) > 0) {
+                Produto temp = produtos[j];
+                produtos[j] = produtos[j + 1];
+                produtos[j + 1] = temp;
+            }
+        }
+    }
+}
+
+void comprarProduto(Produto *produtos, int num_produtos) {
+    int id, quantidade;
+
+    printf("Digite o ID do produto que deseja comprar: ");
+    scanf("%d", &id);
+
+    Produto *produto = NULL;
+    for (int i = 0; i < num_produtos; i++) {
+        if (produtos[i].id == id) {
+            produto = &produtos[i];
+            break;
+        }
+    }
+
+    if (produto == NULL) {
+        printf("Produto Inexistente.\n");
+        return;
+    }
+
+    printf("Quantidade desejada: ");
+    scanf("%d", &quantidade);
+
+    if (quantidade > produto->quantidade) {
+        printf("Estoque insuficiente. Disponivel: %d\n", produto->quantidade);
+    } else {
+        produto->quantidade -= quantidade;
+        printf("Compra realizada com sucesso!\n");
+    }
+}
