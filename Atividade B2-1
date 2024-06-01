@@ -1,0 +1,88 @@
+#include <stdio.h>
+
+// Definindo constantes para as operações
+#define SOMA '+'
+#define SUBTRACAO '-'
+#define MULTIPLICACAO '*'
+#define DIVISAO '/'
+
+// Função para obter a operação desejada do usuário
+char obterOperacao() {
+    char operacao;
+    printf("Digite a operacao desejada (+, -, *, /) ou 'S' para sair: ");
+    scanf(" %c", &operacao);
+    return operacao;
+}
+
+// Função para obter os operandos
+void obterOperandos(float *operando1, float *operando2) {
+    printf("Digite os dois operandos: ");
+    scanf("%f %f", operando1, operando2);
+}
+
+// Função para realizar a soma
+float soma(float operando1, float operando2) {
+    return operando1 + operando2;
+}
+
+// Função para realizar a subtração
+float subtracao(float operando1, float operando2) {
+    return operando1 - operando2;
+}
+
+// Função para realizar a multiplicação
+float multiplicacao(float operando1, float operando2) {
+    return operando1 * operando2;
+}
+
+// Função para realizar a divisão
+float divisao(float operando1, float operando2) {
+    if (operando2 != 0)
+        return operando1 / operando2;
+    else {
+        printf("Erro: Divisao por zero!\n");
+        return 0.0;
+    }
+}
+
+// Função principal
+int main() {
+    char operacao;
+    float operando1, operando2, resultado;
+
+    printf("Bem-vindo a Calculadora de 4 Operacoes!\n");
+
+    do {
+        operacao = obterOperacao();
+
+        switch (operacao) {
+            case SOMA:
+                obterOperandos(&operando1, &operando2);
+                resultado = soma(operando1, operando2);
+                printf("Resultado: %.2f\n", resultado);
+                break;
+            case SUBTRACAO:
+                obterOperandos(&operando1, &operando2);
+                resultado = subtracao(operando1, operando2);
+                printf("Resultado: %.2f\n", resultado);
+                break;
+            case MULTIPLICACAO:
+                obterOperandos(&operando1, &operando2);
+                resultado = multiplicacao(operando1, operando2);
+                printf("Resultado: %.2f\n", resultado);
+                break;
+            case DIVISAO:
+                obterOperandos(&operando1, &operando2);
+                resultado = divisao(operando1, operando2);
+                printf("Resultado: %.2f\n", resultado);
+                break;
+            case 'S':
+                printf("Saindo da calculadora...\n");
+                break;
+            default:
+                printf("Operacao invalida!\n");
+        }
+    } while (operacao != 'S');
+
+    return 0;
+}
