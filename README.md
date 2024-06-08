@@ -13,7 +13,7 @@ Você encontrará meus projetos e tarefas relacionadas á disciplina de Programa
 
 1. Navegue até a pasta desejada.
 2. Escolha a tarefa que deseja explorar.
-3. Dentro das subpastas, você encontrará todos os projetos e tarefas relacionadas.
+3. Dentro da subpasta, você encontrará todos os projetos e tarefas relacionadas.
 
 ## 📝 Notas 📝
 
