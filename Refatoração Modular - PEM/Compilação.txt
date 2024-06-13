@@ -1,0 +1,5 @@
+Compilação
+Para compilar e rodar o programa, utilize os seguintes comandos no terminal:
+
+gcc -o xadrez main.c tabuleiro.c jogada.c
+./xadrez
