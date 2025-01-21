@@ -7,7 +7,7 @@ Olá! Bem-vindo ao meu repositório acadêmico. Aqui, você encontrará todos os
 ## 📚 Conteúdo 📚
 
 Este repositório é organizado por pastas e subpastas com atividades numeradas de acordo com as aulas.
-Você encontrará meus projetos e tarefas relacionadas á disciplina de Programação Estruturada Modular (PEM) e muito mais!
+Você encontrará meus projetos e tarefas relacionadas á disciplina de Programação Estruturada Modular (PEM) em linguagem C.
 
 ## 🚀 Como Usar 🚀
 
